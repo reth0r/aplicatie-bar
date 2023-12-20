@@ -1,3 +1,4 @@
+'use strict';
 const btnLogin = document.querySelector('.login__btn');
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
@@ -7,10 +8,14 @@ const masa = document.querySelector('.masa');
 const mese = document.querySelector('.mese');
 const nrMasa = document.querySelector('.nr-masa');
 const butonBucatarie = document.querySelector('.buton-bucatarie');
-const butonBar = document.querySelector('.buton-bar');
+const butonBarBucatarie = document.querySelector('.buton-bar-bucatarie');
 const feluriMancare = document.querySelector('.feluri-mancare');
 const feluriBauturi = document.querySelector('.feluri-bauturi');
-
+const btnSalata = document.querySelector('.salata');
+const meniuPreparate = document.querySelector('.preparat');
+const btnCiorba = document.querySelector('.ciorba');
+const btnPizza = document.querySelector('.pizza');
+const btnDesert = document.querySelector('.desert');
 ///Conturi ospatari
 
 const osp1 = {
@@ -50,7 +55,11 @@ const masa3 = {
 };
 
 const arrMese = [masa1, masa2, masa3];
-
+const butoane = [btnCiorba, btnSalata, btnPizza, btnDesert];
+const salate = ['greceasca', 'italiana', 'cezar'];
+const ciorbe = ['radauteana', 'perisoare', 'burta'];
+const pizza = ['taraneasca', 'rustica', 'hot-dog'];
+const desert = ['tiramisu', 'clatite', 'lavacake'];
 ///////////////////////////////////////////////////////////
 //implementare login ----display meniu mese
 
@@ -84,20 +93,74 @@ const selectareMasa = function (e) {
   if (!elMasa) return;
   mese.style.display = 'none';
   meniuPrincipal.style.opacity = 100;
-  console.log(elMasa);
-  console.log(elMasa.innerHTML);
+
   nrMasa.innerHTML = elMasa.innerHTML;
 };
 mese.addEventListener('click', selectareMasa);
 
 /////////selectare BUCATARIE / BAR
 
-butonBar.addEventListener('click', function () {
+butonBarBucatarie.addEventListener('click', function () {
   feluriMancare.classList.toggle('hidden');
   feluriBauturi.classList.toggle('hidden');
 });
+/////dislay ciorba
+// btnCiorba.addEventListener('click', function () {
+//   meniuPreparate.innerHTML = '';
+//   ciorbe.forEach(function (elem, i) {
+//     const html = `<div class="display-preparat">
+//           <p>${elem}</p>
+//        </div>`;
+//     meniuPreparate.insertAdjacentHTML('afterbegin', html);
+//   });
+// });
 
-butonBucatarie.addEventListener('click', function () {
-  feluriMancare.classList.toggle('hidden');
-  feluriBauturi.classList.toggle('hidden');
+// //////display salata
+// btnSalata.addEventListener('click', function () {
+//   meniuPreparate.innerHTML = '';
+//   salate.forEach(function (elem, i) {
+//     const html = `<div class="display-preparat">
+//         <p>${elem}</p>
+//      </div>`;
+//     meniuPreparate.insertAdjacentHTML('afterbegin', html);
+//   });
+// });
+
+////o singura functie pt toate butoanele
+butoane.forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    meniuPreparate.innerHTML = '';
+    if (btn === btnCiorba) {
+      ciorbe.forEach(function (elem, i) {
+        const html = `<div class="display-preparat">
+                  <p>${elem}</p> 
+               </div>`;
+        meniuPreparate.insertAdjacentHTML('afterbegin', html);
+      });
+    }
+    if (btn === btnSalata) {
+      salate.forEach(function (elem, i) {
+        const html = `<div class="display-preparat">
+                      <p>${elem}</p> 
+                   </div>`;
+        meniuPreparate.insertAdjacentHTML('afterbegin', html);
+      });
+    }
+    if (btn === btnPizza) {
+      pizza.forEach(function (elem, i) {
+        const html = `<div class="display-preparat">
+                        <p>${elem}</p> 
+                     </div>`;
+        meniuPreparate.insertAdjacentHTML('afterbegin', html);
+      });
+    }
+    if (btn === btnDesert) {
+      desert.forEach(function (elem, i) {
+        const html = `<div class="display-preparat">
+                        <p>${elem}</p> 
+                     </div>`;
+        meniuPreparate.insertAdjacentHTML('afterbegin', html);
+      });
+    }
+  });
 });

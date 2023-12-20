@@ -15,7 +15,7 @@
           placeholder="user"
           class="login__input login__input--user"
         />
-        <!-- In practice, use type="password" -->
+        <!-- use type="password" -->
         <input
           type="text"
           placeholder="PIN"
@@ -31,18 +31,32 @@
       <button class="masa">Masa2</button> -->
     </div>
     <div class="meniu-principal">
-      <div class="section-1 jumatatea-stanga"></div>
+      <div class="section-1 jumatatea-stanga">
+        <div class="descriere-produse">
+          <div class="descriere-den">Denumire</div>
+          <div class="descriere-cant-pret"><div>Cantitate</div>
+        <div>Pret</div></div>
+        </div>
+        <div class="container-produs">
+          <div class="denumire-produs">CIORBA DE BURTA</div>
+          <div class="container-descriere-produs">
+            <div class="cantitate-produs">1</div>
+            <div class="pret-produs">20LEI</div>
+          </div>
+
+        </div>
+      </div>
       <div class="section-2 jumatatea dreapta">
         <div class="butoane">
-          <button class="buton-bar">Bar</button>
-          <button class="buton-bucatarie">Bucatarie</button>
+          <button class="buton-bar-bucatarie">Bucatarie/Bar</button>
+
         </div>
         <div class="bucatarie">
           <div class="feluri-mancare">
-            <button class="btn-feluri-mancare">CIORBE</button>
-            <button class="btn-feluri-mancare">SALATE</button>
-            <button class="btn-feluri-mancare">PIZZA</button>
-            <button class="btn-feluri-mancare">DESERT</button>
+            <button class="btn-feluri-mancare ciorba">CIORBE</button>
+            <button class="btn-feluri-mancare salata">SALATE</button>
+            <button class="btn-feluri-mancare pizza">PIZZA</button>
+            <button class="btn-feluri-mancare desert">DESERT</button>
           </div>
           <div class="feluri-bauturi hidden">
             <button class="btn-feluri-mancare">BERE</button>
@@ -51,13 +65,16 @@
 
           </div>
           <div class="preparate">
-            <div class="preparat">
-              <img src="Pizza-Taraneasca.webp" alt="" class="img-pizza" />
-              <p>Pizza</p>
+            <div class="preparat preparat-ciorba">
+              <!-- <div class="display-preparat">
+                 <p>ciorba</p> 
+              </div> -->
             </div>
-            <div class="preparat">
-              <img src="Pizza-Taraneasca.webp" alt="" class="img-pizza" />
-              <p>Pizza</p>
+
+            <div class="preparat preparat-salata">
+              <div class="display-preparat">
+                 <p>salata</p> 
+              </div>
             </div>
           </div>
           <di class="bauturi hidden">
