@@ -1,0 +1,146 @@
+.nr-masa {
+  background-color: lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+}
+
+/* bara de login */
+.nav-login {
+  background-color: grey;
+  display: flex;
+  justify-content: space-between;
+  height: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 0.1rem;
+}
+
+.mese {
+  height: 100vh;
+  /* display: none; */
+  background-color: yellowgreen;
+  opacity: 100;
+}
+
+.masa {
+  width: 15%;
+  height: 7rem;
+  background-color: blue;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
+
+.login {
+  margin-top: 0.4rem;
+}
+
+/* nume ospatar */
+.nav-login p {
+  opacity: 0;
+}
+
+.meniu-principal {
+  display: flex;
+  /* justify-content: space-around;
+  align-items: flex-start; */
+  opacity: 100;
+}
+
+.section-1 {
+  background-color: red;
+  height: 40rem;
+  width: 20%;
+}
+
+.section-2 {
+  background-color: blue;
+  height: 40rem;
+  width: 80%;
+}
+
+.butoane {
+  width: 100%;
+  height: 2.2rem;
+  background-color: black;
+}
+
+.buton-bar {
+  height: 2rem;
+  width: 20%;
+  /* margin-top: 0.5rem; */
+}
+
+.buton-bucatarie {
+  height: 2rem;
+  width: 20%;
+  /* margin-top: 0.5rem; */
+}
+
+.bucatarie {
+  display: flex;
+  background-color: wheat;
+  height: 94.5%;
+}
+
+.feluri-mancare-hidden {
+  display: none;
+}
+
+.feluri-mancare {
+  width: 20%;
+  background-color: brown;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-feluri-mancare {
+  width: 90%;
+  height: 4rem;
+  margin-top: 1rem;
+  margin-left: 0.8rem;
+  cursor: pointer;
+}
+
+.preparate {
+  background-color: gray;
+  width: 80%;
+
+  overflow: scroll;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.preparate-hidden {
+  display: none;
+}
+
+.preparat {
+  height: 7rem;
+  width: 60%;
+  background-color: aquamarine;
+  padding-top: 20px;
+  border: 2px solid;
+}
+
+.img-pizza {
+  height: 4rem;
+}
+
+.bauturi {
+  background-color: gray;
+  width: 80%;
+  overflow: scroll;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.bauturi-hidden {
+  display: none;
+}
+
+.feluri-bauturi {
+}
