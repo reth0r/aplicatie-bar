@@ -85,10 +85,6 @@
   height: 94.5%;
 }
 
-.feluri-mancare-hidden {
-  display: none;
-}
-
 .feluri-mancare {
   width: 20%;
   background-color: brown;
@@ -143,4 +139,12 @@
 }
 
 .feluri-bauturi {
+  width: 20%;
+  background-color: brown;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none;
 }

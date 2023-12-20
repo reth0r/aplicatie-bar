@@ -6,6 +6,10 @@ const numeOspatar = document.querySelector('.nume-ospatar');
 const masa = document.querySelector('.masa');
 const mese = document.querySelector('.mese');
 const nrMasa = document.querySelector('.nr-masa');
+const butonBucatarie = document.querySelector('.buton-bucatarie');
+const butonBar = document.querySelector('.buton-bar');
+const feluriMancare = document.querySelector('.feluri-mancare');
+const feluriBauturi = document.querySelector('.feluri-bauturi');
 
 ///Conturi ospatari
 
@@ -87,3 +91,13 @@ const selectareMasa = function (e) {
 mese.addEventListener('click', selectareMasa);
 
 /////////selectare BUCATARIE / BAR
+
+butonBar.addEventListener('click', function () {
+  feluriMancare.classList.toggle('hidden');
+  feluriBauturi.classList.toggle('hidden');
+});
+
+butonBucatarie.addEventListener('click', function () {
+  feluriMancare.classList.toggle('hidden');
+  feluriBauturi.classList.toggle('hidden');
+});
