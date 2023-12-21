@@ -136,6 +136,12 @@
   flex-direction: column;
   margin-top: 0.3rem;
   margin-left: 0.3rem;
+  cursor: pointer;
+}
+
+.display-preparat:hover {
+  background-color: rgb(148, 146, 146);
+  transition: 0.5s;
 }
 
 .img-pizza {
@@ -208,27 +214,23 @@ button {
   background-color: rgb(211, 211, 211);
   height: 20vh;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  font-size: 2rem;
 }
 
 .utile-partea-stanga {
-  width: 20.2%;
-  height: 20vh;
+  width: 20%;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.5px solid;
+  margin-bottom: 0.2rem;
 }
 
 .utile-partea-dreapta {
   background-color: black;
   width: 30%;
-}
-
-.total-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 0.1px solid;
-  height: 3rem;
-  font-size: 1.5rem;
-  font-style: bold;
 }
 
 .sterge-comanda {

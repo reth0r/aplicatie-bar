@@ -22,6 +22,7 @@ const divContainerProdus = document.querySelector('.container-produs');
 const divContainerProdus2 = document.querySelector('.container-produs2');
 const btnStergeProdus = document.querySelector('.sterge-selectia');
 const btnStergeComanda = document.querySelector('.sterge-comanda');
+const totalContainer = document.querySelector('.total-container');
 
 /////cart
 let cart = [];
@@ -229,7 +230,7 @@ const selectarePreparat = function (e) {
   //////////////cart implementation ////////////
 
   let matchingItem;
-  let cantitate;
+
   cart.forEach(item => {
     if (item.denumire === obiectGasit.denumire) {
       matchingItem = item;
@@ -247,6 +248,7 @@ const selectarePreparat = function (e) {
   }
 
   updateCart();
+  calculareTotal();
   console.log(cart);
 };
 
@@ -256,11 +258,16 @@ divPreparate.addEventListener('click', selectarePreparat);
 btnStergeProdus.addEventListener('click', function () {
   cart.pop();
   updateCart();
+  calculareTotal();
 });
 
+//////////////////STERGERE COMANDA //////////////////
 btnStergeComanda.addEventListener('click', function () {
   cart = [];
   updateCart();
+  calculareTotal();
+
+  //////////////experiment
 });
 
 /////////////////UPDATE CART/////////////////
@@ -279,3 +286,21 @@ const updateCart = function () {
     divContainerProdus.insertAdjacentHTML('afterbegin', html);
   });
 };
+
+/////calculare total total//////
+const calculareTotal = function () {
+  const pretFinal = cart
+    .map(function (item) {
+      return item.pret * item.cantitate;
+    })
+    .reduce((acc, val) => acc + val, 0);
+  console.log(pretFinal);
+
+  /////afissare total////////
+  totalContainer.innerHTML = '';
+  let html = '';
+  html = `<div class="total-lei">${pretFinal}LEI</div>`;
+  totalContainer.insertAdjacentHTML('afterbegin', html);
+};
+
+///////////////bon afisare modal//////////
