@@ -16,6 +16,13 @@ const meniuPreparate = document.querySelector('.preparat');
 const btnCiorba = document.querySelector('.ciorba');
 const btnPizza = document.querySelector('.pizza');
 const btnDesert = document.querySelector('.desert');
+const divPreparate = document.querySelector('.preparat-ciorba');
+const section1 = document.querySelector('.descriere-produse');
+const divContainerProdus = document.querySelector('.container-produs');
+const btnSterge = document.querySelector('.sterge-comanda');
+
+/////cart
+const cart = [];
 ///Conturi ospatari
 
 const osp1 = {
@@ -56,10 +63,67 @@ const masa3 = {
 
 const arrMese = [masa1, masa2, masa3];
 const butoane = [btnCiorba, btnSalata, btnPizza, btnDesert];
-const salate = ['greceasca', 'italiana', 'cezar'];
-const ciorbe = ['radauteana', 'perisoare', 'burta'];
-const pizza = ['taraneasca', 'rustica', 'hot-dog'];
-const desert = ['tiramisu', 'clatite', 'lavacake'];
+////////Feluri de mancare////////////////
+
+/////////////////////SALATA///////////
+const greceasca = {
+  denumire: 'SALATA GRECEASCA',
+  img: 'imagini preparate/img salata/salata-greceasca-2.jpg',
+  pret: 12,
+  id: 1001,
+  cantitate: 1,
+};
+
+const beouf = {
+  denumire: 'SALATA BEOUF',
+  img: 'imagini preparate/img salata/Romanian-Beef-SaladSalata-De-Boeuf1-1-e1697193343887.webp',
+  pret: 10,
+  id: 1002,
+  cantitate: 1,
+};
+
+const cezar = {
+  denumire: 'SALATA CEZAR',
+  img: 'imagini preparate/img salata/Salata-Caesar-cu-pui-500x375.webp',
+  pret: 14,
+  id: 1003,
+  cantitate: 1,
+};
+
+const salate = [greceasca, beouf, cezar];
+
+///////////////////////CIORBE/////////////////////
+const radauteana = {
+  denumire: 'CIORBA RADAUTEANA',
+  img: 'imagini preparate/imagini ciorba/ciorba-radauteana-recipe1.jpg',
+  pret: 15,
+  id: 1004,
+  cantitate: 1,
+};
+
+const perisoare = {
+  denumire: 'CIORBA PERISOARE',
+  img: 'imagini preparate/imagini ciorba/Ciorba-de-perisoare.webp',
+  pret: 19,
+  id: 1005,
+  cantitate: 1,
+};
+
+const burta = {
+  denumire: 'CIORBA BURTA',
+  img: 'imagini preparate/imagini ciorba/cea-mai-buna-reteta-de-ciorba-de-burta-facuta-acasa-1024x678.webp',
+  pret: 20,
+  id: 1006,
+  cantitate: 1,
+};
+
+const ciorbe = [radauteana, perisoare, burta];
+const mancareTotal = [...salate, ...ciorbe];
+
+// const salate = ['greceasca', 'italiana', 'cezar'];
+// const ciorbe = ['radauteana', 'perisoare', 'burta'];
+// const pizza = ['taraneasca', 'rustica', 'hot-dog'];
+// const desert = ['tiramisu', 'clatite', 'lavacake'];
 ///////////////////////////////////////////////////////////
 //implementare login ----display meniu mese
 
@@ -104,63 +168,96 @@ butonBarBucatarie.addEventListener('click', function () {
   feluriMancare.classList.toggle('hidden');
   feluriBauturi.classList.toggle('hidden');
 });
-/////dislay ciorba
-// btnCiorba.addEventListener('click', function () {
-//   meniuPreparate.innerHTML = '';
-//   ciorbe.forEach(function (elem, i) {
-//     const html = `<div class="display-preparat">
-//           <p>${elem}</p>
-//        </div>`;
-//     meniuPreparate.insertAdjacentHTML('afterbegin', html);
-//   });
-// });
 
-// //////display salata
-// btnSalata.addEventListener('click', function () {
-//   meniuPreparate.innerHTML = '';
-//   salate.forEach(function (elem, i) {
-//     const html = `<div class="display-preparat">
-//         <p>${elem}</p>
-//      </div>`;
-//     meniuPreparate.insertAdjacentHTML('afterbegin', html);
-//   });
-// });
-
-////o singura functie pt toate butoanele
+////GENERARE HTML BUCATARIE
 butoane.forEach(function (btn) {
   btn.addEventListener('click', function () {
     meniuPreparate.innerHTML = '';
     if (btn === btnCiorba) {
       ciorbe.forEach(function (elem, i) {
-        const html = `<div class="display-preparat">
-                  <p>${elem}</p> 
-               </div>`;
+        const html = `<div class="display-preparat" data-id="${elem.id}">
+        <img class="img-pizza" src="${elem.img}" alt="">
+         <div>${elem.denumire}</div>
+      </div>`;
         meniuPreparate.insertAdjacentHTML('afterbegin', html);
       });
     }
     if (btn === btnSalata) {
       salate.forEach(function (elem, i) {
-        const html = `<div class="display-preparat">
-                      <p>${elem}</p> 
-                   </div>`;
+        const html = `<div class="display-preparat" data-id="${elem.id}">
+        <img class="img-pizza" src="${elem.img}" alt="">
+         <div>${elem.denumire}</div>
+      </div>`;
         meniuPreparate.insertAdjacentHTML('afterbegin', html);
       });
     }
     if (btn === btnPizza) {
       pizza.forEach(function (elem, i) {
-        const html = `<div class="display-preparat">
-                        <p>${elem}</p> 
-                     </div>`;
+        const html = `<div class="display-preparat" data-id="${elem.id}">
+        <img class="img-pizza" src="${elem.img}" alt="">
+         <div>${elem.denumire}</div>
+      </div>`;
         meniuPreparate.insertAdjacentHTML('afterbegin', html);
       });
     }
     if (btn === btnDesert) {
       desert.forEach(function (elem, i) {
-        const html = `<div class="display-preparat">
-                        <p>${elem}</p> 
-                     </div>`;
+        const html = `<div class="display-preparat" data-id="${elem.id}">
+        <img class="img-pizza" src="${elem.img}" alt="">
+         <div>${elem.denumire}</div>
+      </div>`;
         meniuPreparate.insertAdjacentHTML('afterbegin', html);
       });
     }
   });
 });
+
+//IMPLEMENTARE CALCUL NOTA DE PLATA
+
+///Selectare element
+
+const selectarePreparat = function (e) {
+  const elPreparat = e.target.closest('.display-preparat');
+  if (!elPreparat) return;
+
+  const obiectGasit = mancareTotal.find(
+    work => work.id == elPreparat.dataset.id
+  );
+
+  //////////////cart implementation ////////////
+
+  let matchingItem;
+  let cantitate;
+  cart.forEach(item => {
+    if (item.denumire === obiectGasit.denumire) {
+      matchingItem = item;
+    }
+  });
+
+  if (matchingItem) {
+    matchingItem.cantitate += 1;
+  } else {
+    cart.push({
+      denumire: obiectGasit.denumire,
+      cantitate: obiectGasit.cantitate,
+      pret: obiectGasit.pret,
+    });
+  }
+
+  divContainerProdus.innerHTML = '';
+  cart.forEach(function (item) {
+    let html = `<div class="container-produs">
+    <div class="denumire-produs">${item.denumire}</div>
+    <div class="container-descriere-produs">
+       <div class="cantitate-produs">${item.cantitate}</div>
+       <div class="pret-produs">${item.pret} LEI</div>
+     </div>`;
+    section1.insertAdjacentHTML('afterend', html);
+  });
+
+  console.log(cart);
+};
+
+divPreparate.addEventListener('click', selectarePreparat);
+
+////////////////////cart implementation
