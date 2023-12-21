@@ -19,10 +19,12 @@ const btnDesert = document.querySelector('.desert');
 const divPreparate = document.querySelector('.preparat-ciorba');
 const section1 = document.querySelector('.descriere-produse');
 const divContainerProdus = document.querySelector('.container-produs');
-const btnSterge = document.querySelector('.sterge-comanda');
+const divContainerProdus2 = document.querySelector('.container-produs2');
+const btnStergeProdus = document.querySelector('.sterge-selectia');
+const btnStergeComanda = document.querySelector('.sterge-comanda');
 
 /////cart
-const cart = [];
+let cart = [];
 ///Conturi ospatari
 
 const osp1 = {
@@ -244,20 +246,36 @@ const selectarePreparat = function (e) {
     });
   }
 
-  divContainerProdus.innerHTML = '';
-  cart.forEach(function (item) {
-    let html = `<div class="container-produs">
-    <div class="denumire-produs">${item.denumire}</div>
-    <div class="container-descriere-produs">
-       <div class="cantitate-produs">${item.cantitate}</div>
-       <div class="pret-produs">${item.pret} LEI</div>
-     </div>`;
-    section1.insertAdjacentHTML('afterend', html);
-  });
-
+  updateCart();
   console.log(cart);
 };
 
 divPreparate.addEventListener('click', selectarePreparat);
 
-////////////////////cart implementation
+////////////////////STERGE ULTIMUL PRODUS ADAUGAT///////////////////////////
+btnStergeProdus.addEventListener('click', function () {
+  cart.pop();
+  updateCart();
+});
+
+btnStergeComanda.addEventListener('click', function () {
+  cart = [];
+  updateCart();
+});
+
+/////////////////UPDATE CART/////////////////
+const updateCart = function () {
+  divContainerProdus.innerHTML = '';
+  cart.forEach(function (item) {
+    let html = `
+      <div class="container-produs2">
+      <div class="container-produs">
+      <div class="denumire-produs">${item.denumire}</div>
+      <div class="container-descriere-produs">
+         <div class="cantitate-produs">${item.cantitate}</div>
+         <div class="pret-produs">${item.pret} LEI</div>
+       </div>
+       </div>`;
+    divContainerProdus.insertAdjacentHTML('afterbegin', html);
+  });
+};

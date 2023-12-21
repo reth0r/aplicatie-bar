@@ -190,7 +190,7 @@ button {
   border: 0.5px solid;
 }
 
-.container-produs {
+.container-produs2 {
   border: 0.1px solid;
 }
 
@@ -236,4 +236,10 @@ button {
   height: 5rem;
   font-size: 1.2rem;
   margin-top: 1rem;
+}
+
+.sterge-selectia {
+  width: 16.7rem;
+  height: 2rem;
+  font-size: 1.2rem;
 }
