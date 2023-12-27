@@ -13,6 +13,7 @@ const feluriMancare = document.querySelector('.feluri-mancare');
 const feluriBauturi = document.querySelector('.feluri-bauturi');
 const btnSalata = document.querySelector('.salata');
 const meniuPreparate = document.querySelector('.preparat');
+const meniuBauturi = document.querySelector('.bauturi');
 const btnCiorba = document.querySelector('.ciorba');
 const btnPizza = document.querySelector('.pizza');
 const btnDesert = document.querySelector('.desert');
@@ -23,6 +24,13 @@ const divContainerProdus2 = document.querySelector('.container-produs2');
 const btnStergeProdus = document.querySelector('.sterge-selectia');
 const btnStergeComanda = document.querySelector('.sterge-comanda');
 const totalContainer = document.querySelector('.total-container');
+const btnImprimaBon = document.querySelector('.btn-imprima-bon');
+const btnClose = document.getElementById('closeModal');
+const btnClose1 = document.getElementById('closeModal1');
+const btnTrimiteComanda = document.querySelector('.btn-trimite-comanda');
+const modalImprimareBon = document.getElementById('myModal');
+const btnBere = document.querySelector('.bere');
+const btnRacoritoare = document.querySelector('.racoritoare');
 
 /////cart
 let cart = [];
@@ -65,7 +73,7 @@ const masa3 = {
 };
 
 const arrMese = [masa1, masa2, masa3];
-const butoane = [btnCiorba, btnSalata, btnPizza, btnDesert];
+const butoane = [btnCiorba, btnSalata, btnPizza, btnDesert, btnBere];
 ////////Feluri de mancare////////////////
 
 /////////////////////SALATA///////////
@@ -120,8 +128,24 @@ const burta = {
   cantitate: 1,
 };
 
+///////////////////Bere//////////////////
+const timisoareana = {
+  denumire: 'TIMISOREANA',
+  img: 'imagine bauturi/timisoreana-doza.jpg',
+  pret: 6,
+  id: 2007,
+  cantitate: 1,
+};
+const heineken = {
+  denumire: 'HEINEKEN',
+  img: 'imagine bauturi/res_dbf5e9dd4c2b6ff6b0c7af848897e5d9.avif',
+  pret: 8,
+  id: 2006,
+  cantitate: 1,
+};
+const bere = [timisoareana, heineken];
 const ciorbe = [radauteana, perisoare, burta];
-const mancareTotal = [...salate, ...ciorbe];
+const mancareTotal = [...salate, ...ciorbe, ...bere];
 
 // const salate = ['greceasca', 'italiana', 'cezar'];
 // const ciorbe = ['radauteana', 'perisoare', 'burta'];
@@ -170,6 +194,7 @@ mese.addEventListener('click', selectareMasa);
 butonBarBucatarie.addEventListener('click', function () {
   feluriMancare.classList.toggle('hidden');
   feluriBauturi.classList.toggle('hidden');
+  meniuPreparate.innerHTML = '';
 });
 
 ////GENERARE HTML BUCATARIE
@@ -205,6 +230,15 @@ butoane.forEach(function (btn) {
     }
     if (btn === btnDesert) {
       desert.forEach(function (elem, i) {
+        const html = `<div class="display-preparat" data-id="${elem.id}">
+        <img class="img-pizza" src="${elem.img}" alt="">
+         <div>${elem.denumire}</div>
+      </div>`;
+        meniuPreparate.insertAdjacentHTML('afterbegin', html);
+      });
+    }
+    if (btn === btnBere) {
+      bere.forEach(function (elem, i) {
         const html = `<div class="display-preparat" data-id="${elem.id}">
         <img class="img-pizza" src="${elem.img}" alt="">
          <div>${elem.denumire}</div>
@@ -303,4 +337,28 @@ const calculareTotal = function () {
   totalContainer.insertAdjacentHTML('afterbegin', html);
 };
 
-///////////////bon afisare modal//////////
+///////////////imprimare bon modal//////////
+
+btnImprimaBon.addEventListener('click', openModal);
+btnClose.addEventListener('click', closeModal);
+
+function openModal() {
+  document.getElementById('myModal').style.display = 'block';
+}
+function closeModal() {
+  document.getElementById('myModal').style.display = 'none';
+}
+
+//////////trimite comanda//////
+btnTrimiteComanda.addEventListener('click', openModal1);
+btnClose1.addEventListener('click', closeModal1);
+function openModal1() {
+  document.getElementById('myModal1').style.display = 'block';
+}
+function closeModal1() {
+  document.getElementById('myModal1').style.display = 'none';
+}
+
+// modal cu mesaj
+// ecranul principal display none//
+// ecranul cu mese display

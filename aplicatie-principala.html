@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,8 +34,10 @@
       <div class="section-1 jumatatea-stanga">
         <div class="descriere-produse">
           <div class="descriere-den">Denumire</div>
-          <div class="descriere-cant-pret"><div>Cantitate</div>
-        <div>Pret</div></div>
+          <div class="descriere-cant-pret">
+            <div>Cantitate</div>
+            <div>Pret</div>
+          </div>
         </div>
         <div class="container-produs">
           <div class="container-produs2">
@@ -47,12 +48,10 @@
             </div> -->
           </div>
         </div>
-
       </div>
       <div class="section-2 jumatatea dreapta">
         <div class="butoane">
           <button class="buton-bar-bucatarie">Bucatarie/Bar</button>
-
         </div>
         <div class="bucatarie">
           <div class="feluri-mancare">
@@ -62,10 +61,9 @@
             <button class="btn-feluri-mancare desert">DESERT</button>
           </div>
           <div class="feluri-bauturi hidden">
-            <button class="btn-feluri-mancare">BERE</button>
-            <button class="btn-feluri-mancare">RACORITOARE</button>
-            <button class="btn-feluri-mancare">SPIRTOASE</button>
-
+            <button class="btn-feluri-mancare bere">BERE</button>
+            <button class="btn-feluri-mancare racoritoare">RACORITOARE</button>
+            <button class="btn-feluri-mancare spirtoase">SPIRTOASE</button>
           </div>
           <div class="preparate">
             <div class="preparat preparat-ciorba">
@@ -77,30 +75,60 @@
 
             <div class="preparat preparat-salata">
               <div class="display-preparat">
-                 <p>salata</p> 
+                <p>salata</p>
               </div>
             </div>
           </div>
-          <di class="bauturi hidden">
-            <div class="preparat">
-              <img src="bere-blonda-tuborg-075l-5942045115019_2_1000x1000.webp" alt="" class="img-pizza" />
+          <div class="bauturi hidden">
+            <!-- <div class="preparat">
+              <img
+                src="imagine bauturi/res_dbf5e9dd4c2b6ff6b0c7af848897e5d9.avif"
+                alt=""
+                class="img-pizza"
+              />
               <p>Bere Blonda</p>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
     </div>
-    <div class="utile">
-      <div class="utile-partea-stanga">
-        <div class="total-text">TOTAL:</div>
-        <div class="total-container">
-        </div>
+    <div id="myModal">
+      <div id="modalContent">
+        <span id="closeModal">&times;</span>
+        <p>Imprimare bon...verifica imprimanta!</p>
+        <img
+          class="img-casa"
+          src="./casa-de-marcat-portabila-cu-jurnal-electronic-partner-200-wifi-cu-acumulator.jpg"
+          alt=""
+        />
       </div>
-      <button class="sterge-selectia">STERGE PRODUS</button>
-      <button class="sterge-comanda">STERGE COMANDA</button>
-      <div class="utile-partea-dreapta"></div>
+    </div>
+    <div id="myModal1">
+      <div id="modalContent">
+        <span id="closeModal1">&times;</span>
+        <p>Comanda trimisa catre bucatarie!</p>
+        <img
+          class="img-casa"
+          src="./Cele-mai-bune-echipamente-700x400.png"
+          alt=""
+        />
+      </div>
     </div>
 
+    <div class="utile">
+      <div class="utile-stanga">
+        <div class="utile-partea-stanga">
+          <div class="total-text">TOTAL:</div>
+          <div class="total-container"></div>
+        </div>
+        <button class="sterge-selectia">STERGE PRODUS</button>
+        <button class="sterge-comanda">STERGE COMANDA</button>
+      </div>
+      <div class="utile-dreapta">
+        <button class="btn-trimite-comanda">TRIMITE COMANDA</button>
+        <button class="btn-imprima-bon">IMPRIMA BON</button>
+      </div>
+    </div>
 
     <script src="aplicatie.js"></script>
   </body>
