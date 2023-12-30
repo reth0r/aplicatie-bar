@@ -170,7 +170,7 @@ btnLogin.addEventListener('click', function (e) {
   );
   console.log(currentAccount);
   if (currentAccount?.password === Number(inputLoginPin.value)) {
-    mese.style.opacity = 100;
+    mese.style.display = 'flex';
     numeOspatar.style.opacity = 100;
   }
   inputLoginPin.value = inputLoginUsername.value = '';
