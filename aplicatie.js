@@ -31,9 +31,11 @@ const btnTrimiteComanda = document.querySelector('.btn-trimite-comanda');
 const modalImprimareBon = document.getElementById('myModal');
 const btnBere = document.querySelector('.bere');
 const btnRacoritoare = document.querySelector('.racoritoare');
-
+const utileContainer = document.querySelector('.utile');
+const btnInapoi = document.querySelector('.btn-inapoi');
 /////cart
 let cart = [];
+let idMasaSelectata;
 ///Conturi ospatari
 
 const osp1 = {
@@ -62,18 +64,22 @@ const accounts = [osp1, osp2, osp3];
 const masa1 = {
   nume: 'Masa Nr1',
   id: 9999,
+  cart: [],
 };
 const masa2 = {
   nume: 'Masa nr2',
   id: 9998,
+  cart: [],
 };
 const masa3 = {
   nume: 'Masa nr3',
   id: 9997,
+  cart: [],
 };
 
 const arrMese = [masa1, masa2, masa3];
 const butoane = [btnCiorba, btnSalata, btnPizza, btnDesert, btnBere];
+console.log(arrMese);
 ////////Feluri de mancare////////////////
 
 /////////////////////SALATA///////////
@@ -147,10 +153,6 @@ const bere = [timisoareana, heineken];
 const ciorbe = [radauteana, perisoare, burta];
 const mancareTotal = [...salate, ...ciorbe, ...bere];
 
-// const salate = ['greceasca', 'italiana', 'cezar'];
-// const ciorbe = ['radauteana', 'perisoare', 'burta'];
-// const pizza = ['taraneasca', 'rustica', 'hot-dog'];
-// const desert = ['tiramisu', 'clatite', 'lavacake'];
 ///////////////////////////////////////////////////////////
 //implementare login ----display meniu mese
 
@@ -170,10 +172,17 @@ const mancareTotal = [...salate, ...ciorbe, ...bere];
 
 /////////////////////////////////
 
+/////functie afisare/inchidere meniu principal////////
+
+const openClose = function () {
+  meniuPrincipal.classList.toggle('hidden');
+  utileContainer.classList.toggle('utile-hidden');
+};
+
 ///generare html mese
 
-arrMese.forEach(function (masa, i) {
-  const html = `<button class="masa">${masa.nume}</button>`;
+arrMese.forEach(function (masa) {
+  const html = `<div class="masa" data-id="${masa.id}">${masa.nume}</div>`;
   mese.insertAdjacentHTML('afterbegin', html);
 });
 
@@ -183,9 +192,9 @@ const selectareMasa = function (e) {
   const elMasa = e.target.closest('.masa');
   if (!elMasa) return;
   mese.style.display = 'none';
-  meniuPrincipal.style.opacity = 100;
-
   nrMasa.innerHTML = elMasa.innerHTML;
+  openClose();
+  elMasa.classList.add('ocupata');
 };
 mese.addEventListener('click', selectareMasa);
 
@@ -339,26 +348,55 @@ const calculareTotal = function () {
 
 ///////////////imprimare bon modal//////////
 
-btnImprimaBon.addEventListener('click', openModal);
-btnClose.addEventListener('click', closeModal);
-
-function openModal() {
-  document.getElementById('myModal').style.display = 'block';
-}
-function closeModal() {
-  document.getElementById('myModal').style.display = 'none';
-}
+btnImprimaBon.addEventListener('click', function () {
+  modalImprimareBon.style.display = 'block';
+});
+btnClose.addEventListener('click', function () {
+  modalImprimareBon.style.display = 'none';
+});
 
 //////////trimite comanda//////
 btnTrimiteComanda.addEventListener('click', openModal1);
-btnClose1.addEventListener('click', closeModal1);
+btnClose1.addEventListener('click', resetareComanda);
+
 function openModal1() {
-  document.getElementById('myModal1').style.display = 'block';
-}
-function closeModal1() {
-  document.getElementById('myModal1').style.display = 'none';
+  const userResponse = window.confirm(
+    'Vrei sa trimiti comanda catre bucatarie?'
+  );
+
+  if (userResponse) {
+    document.getElementById('myModal1').style.display = 'block';
+  }
 }
 
-// modal cu mesaj
-// ecranul principal display none//
-// ecranul cu mese display
+//resetare comanda dupa ce am trimis comanda//
+function resetareComanda() {
+  document.getElementById('myModal1').style.display = 'none';
+  mese.style.display = 'flex';
+  cart = [];
+  divContainerProdus.innerHTML = '';
+  totalContainer.innerHTML = '';
+  openClose();
+}
+
+////buton inapoi////
+
+btnInapoi.addEventListener('click', function () {
+  mese.style.display = 'flex';
+  openClose();
+});
+
+////ocupare masa////
+// apasam pe o masa
+// luam idiul Meseiiiii
+// updatam cartul mesei
+
+const gasireMasa = function (e) {
+  const elMasa = e.target.closest('.masa');
+  if (!elMasa) return;
+  idMasaSelectata = +elMasa.getAttribute('data-id');
+
+  // if (idMasaSelectata === masa1.id) masa1.cart.push(100);
+};
+
+mese.addEventListener('click', gasireMasa);

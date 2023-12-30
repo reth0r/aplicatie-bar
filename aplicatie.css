@@ -25,21 +25,20 @@
 }
 
 .mese {
+  display: flex;
   height: 100vh;
-  /* display: none; */
   background-color: yellowgreen;
-  /* login inchis */
-  opacity: 0;
-  display: none;
+  opacity: 100;
 }
 
 .masa {
-  width: 15%;
+  width: 13%;
   height: 7rem;
   background-color: blue;
   cursor: pointer;
   margin-top: 1rem;
   margin-left: 2rem;
+  font-size: 2rem;
 }
 
 .login {
@@ -53,9 +52,6 @@
 
 .meniu-principal {
   display: flex;
-  /* justify-content: space-around;
-  align-items: flex-start; */
-  opacity: 100;
   border: 1px solid;
 }
 
@@ -267,7 +263,8 @@ button {
 }
 
 .btn-trimite-comanda,
-.btn-imprima-bon {
+.btn-imprima-bon,
+.btn-inapoi {
   width: 40%;
   height: 3rem;
   margin-top: 1rem;
@@ -315,4 +312,12 @@ button {
   margin-top: 0.1rem;
   height: 70%;
   text-align: center;
+}
+
+.utile-hidden {
+  display: none;
+}
+
+.ocupata {
+  background-color: red;
 }
