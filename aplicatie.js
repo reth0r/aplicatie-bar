@@ -1,4 +1,7 @@
 'use strict';
+
+//////////////dublu click seelectare masa ca sa mearga ///////////////
+
 const btnLogin = document.querySelector('.login__btn');
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
@@ -37,6 +40,7 @@ const btnInapoi = document.querySelector('.btn-inapoi');
 let cart = [];
 let idMasaSelectata;
 let masaCurenta;
+let elMasa;
 
 ///Conturi ospatari
 
@@ -81,7 +85,7 @@ const masa3 = {
 
 const arrMese = [masa1, masa2, masa3];
 const butoane = [btnCiorba, btnSalata, btnPizza, btnDesert, btnBere];
-console.log(arrMese);
+
 ////////Feluri de mancare////////////////
 
 /////////////////////SALATA///////////
@@ -156,21 +160,21 @@ const ciorbe = [radauteana, perisoare, burta];
 const mancareTotal = [...salate, ...ciorbe, ...bere];
 
 ///////////////////////////////////////////////////////////
-//implementare login ----display meniu mese
+// implementare login ----display meniu mese
 
-// let currentAccount;
-// btnLogin.addEventListener('click', function (e) {
-//   e.preventDefault();
-//   currentAccount = accounts.find(
-//     acc => acc.username === inputLoginUsername.value
-//   );
-//   console.log(currentAccount);
-//   if (currentAccount?.password === Number(inputLoginPin.value)) {
-//     mese.style.opacity = 100;
-//     numeOspatar.style.opacity = 100;
-//   }
-//   inputLoginPin.value = inputLoginUsername.value = '';
-// });
+let currentAccount;
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+  if (currentAccount?.password === Number(inputLoginPin.value)) {
+    mese.style.opacity = 100;
+    numeOspatar.style.opacity = 100;
+  }
+  inputLoginPin.value = inputLoginUsername.value = '';
+});
 
 /////////////////////////////////
 
@@ -191,18 +195,20 @@ arrMese.forEach(function (masa) {
 ////selectare masa --initializare meniu principal
 
 const selectareMasa = function (e) {
-  const elMasa = e.target.closest('.masa');
+  elMasa = e.target.closest('.masa');
   if (!elMasa) return;
   mese.style.display = 'none';
   nrMasa.innerHTML = elMasa.innerHTML;
   openClose();
   elMasa.classList.add('ocupata');
-  /////implementare
+
   arrMese.find(masa => {
     if (idMasaSelectata === masa.id) masaCurenta = masa;
   });
+  updateCart();
+  calculareTotal();
 };
-mese.addEventListener('click', selectareMasa);
+mese.addEventListener('dblclick', selectareMasa);
 
 /////////selectare BUCATARIE / BAR
 
@@ -275,12 +281,12 @@ const selectarePreparat = function (e) {
   const obiectGasit = mancareTotal.find(
     work => work.id == elPreparat.dataset.id
   );
-  console.log(arrMese);
+
   //////////////cart implementation ////////////
 
   let matchingItem;
 
-  cart.forEach(item => {
+  masaCurenta.cart.forEach(item => {
     if (item.denumire === obiectGasit.denumire) {
       matchingItem = item;
     }
@@ -289,7 +295,7 @@ const selectarePreparat = function (e) {
   if (matchingItem) {
     matchingItem.cantitate += 1;
   } else {
-    cart.push({
+    masaCurenta.cart.push({
       denumire: obiectGasit.denumire,
       cantitate: obiectGasit.cantitate,
       pret: obiectGasit.pret,
@@ -304,14 +310,14 @@ divPreparate.addEventListener('click', selectarePreparat);
 
 ////////////////////STERGE ULTIMUL PRODUS ADAUGAT///////////////////////////
 btnStergeProdus.addEventListener('click', function () {
-  cart.pop();
+  masaCurenta.cart.pop();
   updateCart();
   calculareTotal();
 });
 
 //////////////////STERGERE COMANDA //////////////////
 btnStergeComanda.addEventListener('click', function () {
-  cart = [];
+  masaCurenta.cart = [];
   updateCart();
   calculareTotal();
 
@@ -319,9 +325,9 @@ btnStergeComanda.addEventListener('click', function () {
 });
 
 /////////////////UPDATE CART/////////////////
-const updateCart = function (masa) {
+const updateCart = function () {
   divContainerProdus.innerHTML = '';
-  cart.forEach(function (item) {
+  masaCurenta.cart.forEach(function (item) {
     let html = `
       <div class="container-produs2">
       <div class="container-produs">
@@ -337,7 +343,7 @@ const updateCart = function (masa) {
 
 /////calculare total total//////
 const calculareTotal = function () {
-  const pretFinal = cart
+  const pretFinal = masaCurenta.cart
     .map(function (item) {
       return item.pret * item.cantitate;
     })
@@ -377,9 +383,10 @@ function openModal1() {
 function resetareComanda() {
   document.getElementById('myModal1').style.display = 'none';
   mese.style.display = 'flex';
-  cart = [];
+  masaCurenta.cart = [];
   divContainerProdus.innerHTML = '';
   totalContainer.innerHTML = '';
+  elMasa.classList.remove('ocupata');
   openClose();
 }
 
