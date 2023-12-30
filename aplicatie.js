@@ -36,6 +36,8 @@ const btnInapoi = document.querySelector('.btn-inapoi');
 /////cart
 let cart = [];
 let idMasaSelectata;
+let masaCurenta;
+
 ///Conturi ospatari
 
 const osp1 = {
@@ -195,6 +197,10 @@ const selectareMasa = function (e) {
   nrMasa.innerHTML = elMasa.innerHTML;
   openClose();
   elMasa.classList.add('ocupata');
+  /////implementare
+  arrMese.find(masa => {
+    if (idMasaSelectata === masa.id) masaCurenta = masa;
+  });
 };
 mese.addEventListener('click', selectareMasa);
 
@@ -269,7 +275,7 @@ const selectarePreparat = function (e) {
   const obiectGasit = mancareTotal.find(
     work => work.id == elPreparat.dataset.id
   );
-
+  console.log(arrMese);
   //////////////cart implementation ////////////
 
   let matchingItem;
@@ -292,7 +298,6 @@ const selectarePreparat = function (e) {
 
   updateCart();
   calculareTotal();
-  console.log(cart);
 };
 
 divPreparate.addEventListener('click', selectarePreparat);
@@ -314,7 +319,7 @@ btnStergeComanda.addEventListener('click', function () {
 });
 
 /////////////////UPDATE CART/////////////////
-const updateCart = function () {
+const updateCart = function (masa) {
   divContainerProdus.innerHTML = '';
   cart.forEach(function (item) {
     let html = `
@@ -337,7 +342,6 @@ const calculareTotal = function () {
       return item.pret * item.cantitate;
     })
     .reduce((acc, val) => acc + val, 0);
-  console.log(pretFinal);
 
   /////afissare total////////
   totalContainer.innerHTML = '';
