@@ -25,7 +25,7 @@
 }
 
 .mese {
-  display: none;
+  display: flex;
   height: 100vh;
   background-color: yellowgreen;
   opacity: 100;

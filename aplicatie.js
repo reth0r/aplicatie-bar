@@ -36,12 +36,12 @@ const btnBere = document.querySelector('.bere');
 const btnRacoritoare = document.querySelector('.racoritoare');
 const utileContainer = document.querySelector('.utile');
 const btnInapoi = document.querySelector('.btn-inapoi');
-/////cart
-let cart = [];
+/////variabile globale
+
 let idMasaSelectata;
 let masaCurenta;
 let elMasa;
-
+let currentAccount;
 ///Conturi ospatari
 
 const osp1 = {
@@ -82,8 +82,13 @@ const masa3 = {
   id: 9997,
   cart: [],
 };
+const masa4 = {
+  nume: 'Masa nr4',
+  id: 9996,
+  cart: [],
+};
 
-const arrMese = [masa1, masa2, masa3];
+const arrMese = [masa1, masa2, masa3, masa4];
 const butoane = [btnCiorba, btnSalata, btnPizza, btnDesert, btnBere];
 
 ////////Feluri de mancare////////////////
@@ -159,22 +164,27 @@ const bere = [timisoareana, heineken];
 const ciorbe = [radauteana, perisoare, burta];
 const mancareTotal = [...salate, ...ciorbe, ...bere];
 
+const categorii = {
+  ciorba: ciorbe,
+  salata: salate,
+  bere: bere,
+};
+
 ///////////////////////////////////////////////////////////
 // implementare login ----display meniu mese
 
-let currentAccount;
-btnLogin.addEventListener('click', function (e) {
-  e.preventDefault();
-  currentAccount = accounts.find(
-    acc => acc.username === inputLoginUsername.value
-  );
-  console.log(currentAccount);
-  if (currentAccount?.password === Number(inputLoginPin.value)) {
-    mese.style.display = 'flex';
-    numeOspatar.style.opacity = 100;
-  }
-  inputLoginPin.value = inputLoginUsername.value = '';
-});
+// btnLogin.addEventListener('click', function (e) {
+//   e.preventDefault();
+//   currentAccount = accounts.find(
+//     acc => acc.username === inputLoginUsername.value
+//   );
+//   console.log(currentAccount);
+//   if (currentAccount?.password === Number(inputLoginPin.value)) {
+//     mese.style.display = 'flex';
+//     numeOspatar.style.opacity = 100;
+//   }
+//   inputLoginPin.value = inputLoginUsername.value = '';
+// });
 
 /////////////////////////////////
 
@@ -199,12 +209,12 @@ const selectareMasa = function (e) {
   if (!elMasa) return;
   mese.style.display = 'none';
   nrMasa.innerHTML = elMasa.innerHTML;
-  openClose();
   elMasa.classList.add('ocupata');
 
   arrMese.find(masa => {
     if (idMasaSelectata === masa.id) masaCurenta = masa;
   });
+  openClose();
   updateCart();
   calculareTotal();
 };
@@ -222,48 +232,15 @@ butonBarBucatarie.addEventListener('click', function () {
 butoane.forEach(function (btn) {
   btn.addEventListener('click', function () {
     meniuPreparate.innerHTML = '';
-    if (btn === btnCiorba) {
-      ciorbe.forEach(function (elem, i) {
+    const category = btn.getAttribute('data-category');
+    console.log('hello');
+
+    if (category && category in categorii) {
+      categorii[category].forEach(function (elem) {
         const html = `<div class="display-preparat" data-id="${elem.id}">
-        <img class="img-pizza" src="${elem.img}" alt="">
-         <div>${elem.denumire}</div>
-      </div>`;
-        meniuPreparate.insertAdjacentHTML('afterbegin', html);
-      });
-    }
-    if (btn === btnSalata) {
-      salate.forEach(function (elem, i) {
-        const html = `<div class="display-preparat" data-id="${elem.id}">
-        <img class="img-pizza" src="${elem.img}" alt="">
-         <div>${elem.denumire}</div>
-      </div>`;
-        meniuPreparate.insertAdjacentHTML('afterbegin', html);
-      });
-    }
-    if (btn === btnPizza) {
-      pizza.forEach(function (elem, i) {
-        const html = `<div class="display-preparat" data-id="${elem.id}">
-        <img class="img-pizza" src="${elem.img}" alt="">
-         <div>${elem.denumire}</div>
-      </div>`;
-        meniuPreparate.insertAdjacentHTML('afterbegin', html);
-      });
-    }
-    if (btn === btnDesert) {
-      desert.forEach(function (elem, i) {
-        const html = `<div class="display-preparat" data-id="${elem.id}">
-        <img class="img-pizza" src="${elem.img}" alt="">
-         <div>${elem.denumire}</div>
-      </div>`;
-        meniuPreparate.insertAdjacentHTML('afterbegin', html);
-      });
-    }
-    if (btn === btnBere) {
-      bere.forEach(function (elem, i) {
-        const html = `<div class="display-preparat" data-id="${elem.id}">
-        <img class="img-pizza" src="${elem.img}" alt="">
-         <div>${elem.denumire}</div>
-      </div>`;
+          <img class="img-pizza" src="${elem.img}" alt="">
+          <div>${elem.denumire}</div>
+        </div>`;
         meniuPreparate.insertAdjacentHTML('afterbegin', html);
       });
     }
@@ -397,17 +374,12 @@ btnInapoi.addEventListener('click', function () {
   openClose();
 });
 
-////ocupare masa////
-// apasam pe o masa
-// luam idiul Meseiiiii
-// updatam cartul mesei
+////gasirea mesei//
 
 const gasireMasa = function (e) {
   const elMasa = e.target.closest('.masa');
   if (!elMasa) return;
   idMasaSelectata = +elMasa.getAttribute('data-id');
-
-  // if (idMasaSelectata === masa1.id) masa1.cart.push(100);
 };
 
 mese.addEventListener('click', gasireMasa);
