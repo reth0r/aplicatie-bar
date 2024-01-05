@@ -198,7 +198,7 @@ const openClose = function () {
 ///generare html mese
 
 arrMese.forEach(function (masa) {
-  const html = `<div class="masa" data-id="${masa.id}">${masa.nume}</div>`;
+  const html = `<div class="masa" data-id="${masa.id}">${masa.nume} <br> dblClick</div>`;
   mese.insertAdjacentHTML('afterbegin', html);
 });
 
